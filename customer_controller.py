@@ -4,7 +4,7 @@ from configdb import get_connection
 def add_customer(name, document, status, phone ):
     cnn = get_connection()
     with cnn.cursor() as cursor:
-        cursor.execute("INSERT INTO customer  (name, document, status, phone) VALUES (%s,%s,%s,%s)",(name, document, status, phone))
+        cursor.execute("INSERT INTO customer (name, document, status, phone) VALUES (%s,%s,%s,%s)",(name, document, status, phone))
     cnn.commit()
     cnn.close()
 
