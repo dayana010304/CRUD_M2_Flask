@@ -3,7 +3,7 @@ from configdb import get_connection
 def add_invoice(number, document, date, price, balance ):
     cnn = get_connection()
     with cnn.cursor() as cursor:
-        cursor.execute("SELECT * FROM customer WHERE document  INSERT INTO invoice (number, document, date, price, balance) VALUES (%s,%s,%s,%s)",(number, document, date, price, balance))
+        cursor.execute("INSERT INTO invoice (number, document, date, price, balance) VALUES (%s,(select document from customer where document = %s),%s,%s,%s)",(number, document, date, price, balance))
     cnn.commit()
     cnn.close()
 
